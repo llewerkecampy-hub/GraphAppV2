@@ -1,0 +1,110 @@
+GraphApp/
+
+app.py
+
+requirements.txt
+README.md
+
+──────────────────────────────
+
+core/
+
+    __init__.py
+
+    data_manager.py
+    graph_builder.py
+    axis_manager.py
+    statistics_engine.py
+    annotation_engine.py
+    export_manager.py
+
+    settings.py
+    models.py
+
+──────────────────────────────
+
+graph_types/
+
+    __init__.py
+
+    bar_plot.py
+    box_plot.py
+    violin_plot.py
+    scatter_plot.py
+    line_plot.py
+    grouped_bar_plot.py
+    heatmap_plot.py
+
+    dot_plot.py
+    swarm_plot.py
+    strip_plot.py
+    histogram_plot.py
+
+──────────────────────────────
+
+statistics/
+
+    __init__.py
+
+    ttests.py
+    anova.py
+    nonparametric.py
+    posthoc.py
+
+    assumptions.py
+
+──────────────────────────────
+
+annotations/
+
+    __init__.py
+
+    significance.py
+    bracket_layout.py
+
+──────────────────────────────
+
+axes/
+
+    __init__.py
+
+    linear_axis.py
+    log_axis.py
+
+──────────────────────────────
+
+themes/
+
+    __init__.py
+
+    themes.py
+
+──────────────────────────────
+
+palettes/
+
+    __init__.py
+
+    palettes.py
+
+──────────────────────────────
+
+ui/
+
+    __init__.py
+
+    sidebar.py
+
+    figure_controls.py
+    statistics_controls.py
+    axis_controls.py
+    export_controls.py
+
+──────────────────────────────
+
+tests/
+
+    test_statistics.py
+    test_renderer.py
+    test_annotations.py
+    test_axes.py

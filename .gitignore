@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Streamlit
+.streamlit/
+
+# Virtual Environments
+venv/
+.venv/
+env/
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Testing
+.pytest_cache/
+
+# Build artifacts
+dist/
+build/
+
+# Logs
+*.log
+
+# Generated exports
+*.png
+*.pdf
+*.svg
+*.tiff
+
+# Local data files
+*.xlsx
+*.xls
+*.csv

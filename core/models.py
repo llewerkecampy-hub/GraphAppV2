@@ -78,6 +78,8 @@ class StatisticsSettings:
 
     alpha: float = 0.05
 
+    show_statistics: bool = True
+
     selected_comparisons: List[dict] = field(
         default_factory=list
     )

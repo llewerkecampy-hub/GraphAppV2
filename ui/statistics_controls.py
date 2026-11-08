@@ -51,4 +51,16 @@ def build_statistics_settings(
 
     )
 
+    settings.statistics.show_statistics = (
+
+        st.sidebar.checkbox(
+
+            "Display Statistics",
+
+            value=settings.statistics.show_statistics
+
+        )
+
+    )
+
     return settings

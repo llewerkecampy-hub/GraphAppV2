@@ -108,65 +108,85 @@ settings = build_sidebar(
 # Statistics
 # =====================================================
 
-try:
+statistics_result = None
 
-    statistics_result = run_statistics(
+assumption_report = None
 
-        df,
+if settings.statistics.show_statistics:
 
-        settings.statistics
+    try:
 
-    )
-
-    assumption_report = (
-        get_assumption_report(
+        statistics_result = run_statistics(
 
             df,
 
             settings.statistics
 
         )
-    )
 
-except ValueError as error:
+        assumption_report = (
 
-    st.error(
-        str(error)
-    )
+            get_assumption_report(
 
-    st.stop()
+                df,
 
-show_statistics_results(
+                settings.statistics
 
-    st,
+            )
 
-    statistics_result
+        )
 
-)
+    except ValueError as error:
 
-show_assumption_report(
+        st.error(
+            str(error)
+        )
 
-    st,
+        st.stop()
 
-    assumption_report
-
-)
-
-
-# =====================================================
-# Annotation Selection
-# =====================================================
-
-selected_pairs = (
-    build_annotation_controls(
+    show_statistics_results(
 
         st,
 
         statistics_result
 
     )
-)
 
+    show_assumption_report(
+
+        st,
+
+        assumption_report
+
+    )
+
+# =====================================================
+# Annotation Selection
+# =====================================================
+
+selected_pairs = None
+
+if (
+
+    settings.statistics.show_statistics
+
+    and
+
+    statistics_result is not None
+
+):
+
+    selected_pairs = (
+
+        build_annotation_controls(
+
+            st,
+
+            statistics_result
+
+        )
+
+    )
 
 # =====================================================
 # Build Graph

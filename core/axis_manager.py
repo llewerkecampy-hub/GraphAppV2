@@ -185,6 +185,9 @@ def validate_axis_data(
             "Logarithmic axes require all values to be greater than zero."
         )
 
+
+
+# This is the only function other code should call. 
 def apply_axis_settings(
     ax,
     data,

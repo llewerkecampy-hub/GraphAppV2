@@ -15,7 +15,7 @@ def create_group_positions(
 
     return {
 
-        group: index
+        str(group): index
 
         for index, group
 

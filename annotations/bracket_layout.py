@@ -54,14 +54,82 @@ def build_bracket_layout(
     height_step
 ):
 
+    # ---------------------------------------------
+    # Normalize group position keys
+    # ---------------------------------------------
+
+    normalized_positions = {
+
+        str(group): position
+
+        for group, position
+
+        in group_positions.items()
+
+    }
+
+    # ---------------------------------------------
+    # Filter invalid comparisons
+    # ---------------------------------------------
+
+    valid_comparisons = []
+
+    for comparison in comparisons:
+
+        group1 = str(
+            comparison.group1
+        )
+
+        group2 = str(
+            comparison.group2
+        )
+
+        if (
+
+            group1 in normalized_positions
+
+            and
+
+            group2 in normalized_positions
+
+        ):
+
+            valid_comparisons.append(
+                comparison
+            )
+
+        else:
+
+            print(
+
+                "Skipping comparison:",
+
+                group1,
+
+                group2
+
+            )
+
+    # ---------------------------------------------
+    # Sort by span size
+    # ---------------------------------------------
+
     sorted_comparisons = sorted(
 
-        comparisons,
+        valid_comparisons,
 
         key=lambda c: abs(
-            group_positions[c.group2]
+
+            normalized_positions[
+                str(c.group2)
+            ]
+
             -
-            group_positions[c.group1]
+
+            normalized_positions[
+                str(c.group1)
+            ]
+
         )
 
     )
@@ -72,24 +140,36 @@ def build_bracket_layout(
 
     for comparison in sorted_comparisons:
 
+        group1 = str(
+            comparison.group1
+        )
+
+        group2 = str(
+            comparison.group2
+        )
+
         x1 = min(
-            group_positions[
-                comparison.group1
+
+            normalized_positions[
+                group1
             ],
 
-            group_positions[
-                comparison.group2
+            normalized_positions[
+                group2
             ]
+
         )
 
         x2 = max(
-            group_positions[
-                comparison.group1
+
+            normalized_positions[
+                group1
             ],
 
-            group_positions[
-                comparison.group2
+            normalized_positions[
+                group2
             ]
+
         )
 
         y = starting_height
@@ -98,10 +178,12 @@ def build_bracket_layout(
 
             candidate = Bracket(
 
-                group1=comparison.group1,
-                group2=comparison.group2,
+                group1=group1,
+
+                group2=group2,
 
                 x1=x1,
+
                 x2=x2,
 
                 y=y,
@@ -109,6 +191,7 @@ def build_bracket_layout(
                 stars=comparison.stars,
 
                 pvalue=comparison.pvalue
+
             )
 
             collision = False
@@ -166,7 +249,7 @@ def required_plot_height(
     bracket_height
 ):
 
-    if len(layout) == 0:
+    if not layout:
 
         return None
 

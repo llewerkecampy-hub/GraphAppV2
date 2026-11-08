@@ -34,10 +34,13 @@ def build_long_dataframe(
 
         temp = pd.DataFrame(
             {
-                "Group": column,
-                "Value": df[column].dropna()
+                "Group": str(column),
+                "Value": pd.to_numeric(
+                    df[column],
+                    errors="coerce"
+                )
             }
-        )
+        ).dropna()
 
         frames.append(
             temp
